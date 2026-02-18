@@ -1479,3 +1479,30 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	
 /******/ })()
 ;
+
+
+(function () {
+  /**
+   * 🔁 REDIRECT RULES
+   * "FROM" : "TO"
+   * Always start paths with "/"
+   */
+  const redirectMap = {
+    
+    "/index.html": "/",
+    "/home.html": "/",
+    "/services/services/website-development.html": "/services/website-development",
+    "/old-page.html": "/",
+  };
+
+  const currentPath = window.location.pathname;
+
+  // Normalize trailing slash
+  const normalizedPath = currentPath.endsWith("/") && currentPath !== "/"
+    ? currentPath.slice(0, -1)
+    : currentPath;
+
+  if (redirectMap[normalizedPath]) {
+    window.location.replace(redirectMap[normalizedPath]);
+  }
+})();
